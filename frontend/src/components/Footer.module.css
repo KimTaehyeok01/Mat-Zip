@@ -1,0 +1,23 @@
+.footer {
+  background: #fff;
+  border-top: 1px solid var(--color-border);
+  padding: 24px 16px;
+  margin-top: auto;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.brand { font-size: 16px; font-weight: 800; color: var(--color-primary); }
+.copy  { font-size: 13px; color: var(--color-text-muted); }
+
+/* 모바일: 하단 내비가 대체하므로 푸터 숨김 */
+@media (max-width: 767px) {
+  .footer { display: none; }
+}

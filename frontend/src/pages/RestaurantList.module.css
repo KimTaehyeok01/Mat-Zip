@@ -1,0 +1,119 @@
+.page { display: flex; flex-direction: column; gap: 24px; }
+
+.top { display: flex; flex-direction: column; gap: 12px; }
+
+.topRow { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+.viewToggle {
+  display: flex;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.viewToggle button {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+}
+
+.viewToggle button:last-child { border-right: none; }
+
+.activeView { background: var(--color-primary) !important; color: #fff; }
+
+.resultInfo { font-size: 14px; color: var(--color-text-muted); }
+
+/* 필터 바 */
+.filterBar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.filterGroup { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.filterLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  min-width: 42px;
+  flex-shrink: 0;
+}
+
+.filterChip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1.5px solid var(--color-border);
+  background: #fff;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.filterChip:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+.filterActive {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1.5px solid var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.mapWrapper { border-radius: var(--radius-md); overflow: hidden; }
+
+.loading, .empty { text-align: center; padding: 60px; color: var(--color-text-muted); }
+
+.pagination { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
+
+.pageBtn, .activePage {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1.5px solid var(--color-border);
+}
+
+.activePage {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* ── 모바일 ── */
+@media (max-width: 767px) {
+  .page { gap: 14px; }
+
+  .filterBar { padding: 12px; gap: 8px; }
+
+  /* 필터 칩 가로 스크롤 */
+  .filterGroup {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+  .filterGroup::-webkit-scrollbar { display: none; }
+
+  .filterLabel { font-size: 12px; min-width: 38px; }
+  .filterChip, .filterActive { font-size: 12px; padding: 5px 10px; }
+
+  /* 지도 뷰 높이 축소 */
+  .mapWrapper { border-radius: var(--radius-sm); }
+
+  .loading, .empty { padding: 40px 20px; font-size: 14px; }
+}

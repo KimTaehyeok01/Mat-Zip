@@ -1,0 +1,83 @@
+.container { display: flex; justify-content: center; padding-top: 20px; }
+
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 36px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.title { font-size: 20px; font-weight: 800; margin-bottom: 24px; }
+.restaurantName { color: var(--color-primary); }
+
+.error { color: #ef4444; font-size: 13px; margin-bottom: 10px; }
+
+.btnRow { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+
+/* 인증 섹션 */
+.verifySection {
+  background: #fafafa;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.verifyHeader   { margin-bottom: 10px; }
+.verifyTitle    { font-weight: 700; font-size: 14px; display: block; margin-bottom: 2px; }
+.verifyDesc     { font-size: 12px; color: var(--color-text-muted); }
+
+.verifyBtn {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary);
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.verifyBtn:hover { background: #fff4f0; }
+
+.verifyChecking { font-size: 13px; color: #888; margin: 0; }
+.verifySuccess  { font-size: 13px; color: #16a34a; font-weight: 600; margin: 0; }
+.verifyFail     { font-size: 13px; color: #dc2626; margin: 0; }
+
+/* 영수증 미리보기 */
+.receiptPreview { display: flex; align-items: center; gap: 12px; }
+.receiptPreview img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.removeReceipt {
+  font-size: 12px;
+  color: #dc2626;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* ── 모바일 ── */
+@media (max-width: 767px) {
+  .container { padding-top: 0; }
+
+  .card {
+    border-radius: var(--radius-md);
+    box-shadow: none;
+    padding: 20px 16px;
+  }
+
+  .title { font-size: 17px; margin-bottom: 18px; }
+
+  /* 버튼 가로 가득 */
+  .btnRow { flex-direction: column-reverse; }
+  .btnRow > * { width: 100%; }
+}

@@ -1,0 +1,45 @@
+# ===== Secrets =====
+application-local.properties
+.env
+
+# ===== Spring Boot =====
+target/
+build/
+bin/
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# Gradle
+.gradle/
+gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# ===== React / Node =====
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Claude worktrees =====
+.claude/worktrees/

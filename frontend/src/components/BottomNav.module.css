@@ -1,0 +1,46 @@
+/* 모바일 전용 하단 내비게이션 — 데스크탑에서는 숨김 */
+.nav {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: #fff;
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.06);
+    /* iPhone 홈 바 안전 영역 */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .item,
+  .itemActive {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 0;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .itemActive {
+    color: var(--color-primary);
+  }
+
+  .item:active,
+  .itemActive:active {
+    opacity: 0.7;
+  }
+}

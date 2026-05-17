@@ -1,0 +1,167 @@
+.page { display: flex; flex-direction: column; gap: 28px; }
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--color-surface);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.avatarWrapper:hover .avatarOverlay { opacity: 1; }
+
+.avatarOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+
+.avatarDefault {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profileInfo { flex: 1; min-width: 0; }
+
+.profileTopRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.profileText { min-width: 0; }
+
+.nickname { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+.email    { font-size: 14px; color: var(--color-text-muted); margin-bottom: 6px; }
+.address  { font-size: 13px; color: var(--color-text-muted); margin-bottom: 8px; }
+
+.profileMetaRow {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.provider {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #fff4f0;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.accountSettingBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #ff8657 0%, #ff6b35 100%);
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+.accountSettingBtn:hover { transform: translateY(-1px); box-shadow: 0 8px 16px rgba(255, 107, 53, 0.28); }
+.accountSettingBtn:active { transform: translateY(0); }
+
+.accountSettingIcon { stroke: currentColor; }
+
+.resetAvatarBtn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.resetAvatarBtn:hover    { border-color: #ef4444; color: #ef4444; }
+.resetAvatarBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* 탭 */
+.tabs { display: flex; border-bottom: 2px solid var(--color-border); }
+
+.tab, .activeTab {
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+}
+
+.activeTab {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.list  { display: flex; flex-direction: column; gap: 12px; }
+.empty { color: var(--color-text-muted); padding: 40px; text-align: center; }
+
+/* ── 모바일 ── */
+@media (max-width: 767px) {
+  .page { gap: 18px; }
+
+  .profile { padding: 16px; gap: 14px; }
+
+  .avatarWrapper,
+  .avatar,
+  .avatarDefault { width: 58px; height: 58px; }
+  .avatarDefault  { font-size: 22px; }
+
+  .nickname { font-size: 17px; }
+  .profileTopRow { flex-direction: column; gap: 10px; }
+  .accountSettingBtn { align-self: flex-start; }
+
+  /* 탭 가로 스크롤 */
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab, .activeTab { padding: 10px 14px; font-size: 13px; }
+}

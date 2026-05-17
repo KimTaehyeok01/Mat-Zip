@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.submitBtn { width: 100%; padding: 12px; font-size: 16px; margin-top: 4px; }
+
+.error { color: #ef4444; font-size: 13px; margin-bottom: 10px; }
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+.divider::before,
+.divider::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
+
+.socialBtns { display: flex; flex-direction: column; gap: 10px; }
+
+.kakaoBtn {
+  width: 100%;
+  background: #fee500;
+  color: #3a1d1d;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+}
+
+.naverBtn {
+  width: 100%;
+  background: #03c75a;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+}
+
+.link { text-align: center; margin-top: 20px; font-size: 14px; color: var(--color-text-muted); }
+.link a { color: var(--color-primary); font-weight: 600; }
+
+/* ── 모바일 ── */
+@media (max-width: 767px) {
+  .container { padding-top: 0; }
+
+  .card {
+    border-radius: var(--radius-md);
+    box-shadow: none;
+    padding: 28px 16px;
+  }
+
+  .title { font-size: 19px; }
+}

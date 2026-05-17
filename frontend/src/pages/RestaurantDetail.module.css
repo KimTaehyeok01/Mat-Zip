@@ -1,0 +1,60 @@
+.page { display: flex; flex-direction: column; gap: 28px; }
+.loading { text-align: center; padding: 80px; color: var(--color-text-muted); }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.category {
+  display: inline-block;
+  background: #fff4f0;
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.name { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.muted   { color: var(--color-text-muted); font-weight: 400; font-size: 14px; }
+.address { font-size: 15px; color: var(--color-text-muted); margin-bottom: 6px; }
+.info    { font-size: 14px; color: var(--color-text-muted); margin-bottom: 4px; }
+.desc    { margin-top: 10px; font-size: 15px; line-height: 1.7; color: var(--color-text); }
+
+.actions { display: flex; gap: 10px; flex-shrink: 0; }
+
+.mapSection   { border-radius: var(--radius-md); overflow: hidden; }
+.reviewSection {}
+.reviewTitle  { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.reviewList   { display: flex; flex-direction: column; gap: 12px; }
+.empty        { color: var(--color-text-muted); padding: 30px 0; }
+
+/* ── 모바일 ── */
+@media (max-width: 767px) {
+  .page { gap: 20px; }
+
+  .header { flex-direction: column; gap: 12px; }
+
+  .name { font-size: 20px; }
+
+  /* 버튼 가로 가득 */
+  .actions { width: 100%; }
+  .actions > * { flex: 1; justify-content: center; }
+
+  .reviewTitle { font-size: 16px; }
+}

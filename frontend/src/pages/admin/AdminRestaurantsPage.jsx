@@ -57,7 +57,6 @@ function AdminRestaurantsPage() {
         sort: 'createdAt,desc',
       });
       setRestaurants(res.data.content ?? []);
-      // Spring Boot 3.3+: 페이지 정보가 res.data.page 안에 있음
       const pageInfo = res.data.page ?? res.data;
       setTotalPages(pageInfo.totalPages ?? 0);
       setTotalElements(pageInfo.totalElements ?? 0);

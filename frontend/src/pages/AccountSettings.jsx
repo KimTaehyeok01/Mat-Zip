@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuthStore from '../store/authStore';
+import { useAuth } from '../hooks/useAuth';
 import { authService } from '../services/authService';
 import styles from './AccountSettings.module.css';
 
 function AccountSettings() {
   const navigate = useNavigate();
-  const { isLoggedIn, user, setUser } = useAuthStore();
+  const { isLoggedIn, user, setUser } = useAuth();
   const [profileForm, setProfileForm] = useState({ nickname: '', address: '' });
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: '',

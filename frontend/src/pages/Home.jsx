@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import RestaurantCard from '../components/RestaurantCard';
 import { restaurantService, categoryService } from '../services/restaurantService';
+import { useFetch } from '../hooks/useFetch';
 import styles from './Home.module.css';
 
 
 function Home() {
   const navigate = useNavigate();
-  const [topRated, setTopRated] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const { data: topRatedRes } = useFetch(() => restaurantService.getTopRated(), []);
+  const { data: categoriesRes } = useFetch(() => categoryService.getAll(), []);
 
-  useEffect(() => {
-    restaurantService.getTopRated()
-      .then((res) => setTopRated(res.data.content || []))
-      .catch(() => setTopRated([]));
-    categoryService.getAll()
-      .then((res) => setCategories(res.data || []))
-      .catch(() => setCategories([]));
-  }, []);
+  const topRated = topRatedRes?.data?.content || [];
+  const categories = categoriesRes?.data || [];
 
   const handleSearch = (keyword) => {
     if (keyword) navigate(`/restaurants?keyword=${encodeURIComponent(keyword)}`);

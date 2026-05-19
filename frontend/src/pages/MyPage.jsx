@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RestaurantCard from '../components/RestaurantCard';
 import ReviewCard from '../components/ReviewCard';
-import useAuthStore from '../store/authStore';
+import { useAuth } from '../hooks/useAuth';
 import api from '../services/api';
 import styles from './MyPage.module.css';
 
 function MyPage() {
   const navigate = useNavigate();
-  const { user, isLoggedIn, setAuth } = useAuthStore();
+  const { user, isLoggedIn, setAuth } = useAuth();
   const [tab, setTab] = useState('reviews');
   const [reviews, setReviews] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);

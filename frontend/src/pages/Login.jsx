@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../services/authService';
-import useAuthStore from '../store/authStore';
+import { useAuth } from '../hooks/useAuth';
 import styles from './Auth.module.css';
 
 function Login() {
   const navigate = useNavigate();
-  const { setAuth } = useAuthStore();
+  const { setAuth } = useAuth();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 

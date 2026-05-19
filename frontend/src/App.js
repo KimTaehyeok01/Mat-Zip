@@ -14,12 +14,12 @@ import WriteReview from './pages/WriteReview';
 import OAuth2Callback from './pages/OAuth2Callback';
 import AdminUsersPage from './pages/admin/AdminUsersPage';
 import AdminRestaurantsPage from './pages/admin/AdminRestaurantsPage';
-import useAuthStore from './store/authStore';
+import { useAuth } from './hooks/useAuth';
 import { authService } from './services/authService';
 import './App.css';
 
 function App() {
-  const { isLoggedIn, user, setAuth } = useAuthStore();
+  const { isLoggedIn, user, setAuth } = useAuth();
 
   // 페이지 새로고침 시 토큰은 있지만 user 정보가 없으면 다시 불러옴
   useEffect(() => {

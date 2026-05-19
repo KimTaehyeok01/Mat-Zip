@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import RestaurantCard from '../components/RestaurantCard';
 import KakaoMap from '../components/KakaoMap';
 import { restaurantService } from '../services/restaurantService';
+import { useFetch } from '../hooks/useFetch';
 import styles from './RestaurantList.module.css';
 
 const PRICE_OPTIONS = [
@@ -17,10 +18,7 @@ const ATMOSPHERE_OPTIONS = ['데이트', '가족', '혼밥', '비즈니스', '�
 
 function RestaurantList() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [restaurants, setRestaurants] = useState([]);
   const [page, setPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [viewMode, setViewMode] = useState('grid');
   const [selectedAtmosphere, setSelectedAtmosphere] = useState('');
 
@@ -28,29 +26,21 @@ function RestaurantList() {
   const categoryId = searchParams.get('categoryId') || '';
   const priceRange = searchParams.get('priceRange') || '';
 
-  const fetchRestaurants = useCallback(async () => {
-    setLoading(true);
-    try {
-      const params = {
-        page, size: 12,
-        keyword: keyword || undefined,
-        categoryId: categoryId || undefined,
-        priceRange: priceRange || undefined,
-        atmosphere: selectedAtmosphere || undefined,
-      };
-      const res = await restaurantService.getList(params);
-      setRestaurants(res.data.content || []);
-      // Spring Boot 3.3+: 페이지 정보가 res.data.page 안에 있음
-      const pageInfo = res.data.page ?? res.data;
-      setTotalPages(pageInfo.totalPages || 0);
-    } catch {
-      setRestaurants([]);
-    } finally {
-      setLoading(false);
-    }
-  }, [page, keyword, categoryId, priceRange, selectedAtmosphere]);
+  const { data: restaurantRes, loading } = useFetch(
+    () => restaurantService.getList({
+      page, size: 12,
+      keyword: keyword || undefined,
+      categoryId: categoryId || undefined,
+      priceRange: priceRange || undefined,
+      atmosphere: selectedAtmosphere || undefined,
+    }),
+    [page, keyword, categoryId, priceRange, selectedAtmosphere],
+  );
 
-  useEffect(() => { fetchRestaurants(); }, [fetchRestaurants]);
+  // Spring Boot 3.3+: 페이지 정보가 res.data.page 안에 있음
+  const restaurants = restaurantRes?.data?.content || [];
+  const pageInfo = restaurantRes?.data?.page ?? restaurantRes?.data;
+  const totalPages = pageInfo?.totalPages || 0;
 
   const handleSearch = (kw) => {
     setPage(0);

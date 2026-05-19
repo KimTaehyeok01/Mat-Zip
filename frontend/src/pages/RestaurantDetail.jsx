@@ -5,15 +5,16 @@ import StarRating from '../components/StarRating';
 import ReviewCard from '../components/ReviewCard';
 import { restaurantService } from '../services/restaurantService';
 import api from '../services/api';
-import useAuthStore from '../store/authStore';
+import { useAuth } from '../hooks/useAuth';
+import { useBookmark } from '../hooks/useBookmark';
 import styles from './RestaurantDetail.module.css';
 
 function RestaurantDetail() {
   const { id } = useParams();
-  const { isLoggedIn, user } = useAuthStore();
+  const { isLoggedIn, user } = useAuth();
   const [restaurant, setRestaurant] = useState(null);
   const [reviews, setReviews] = useState([]);
-  const [bookmarked, setBookmarked] = useState(false);
+  const { bookmarked, setBookmarked, toggleBookmark } = useBookmark(id);
 
   useEffect(() => {
     restaurantService.getDetail(id).then((res) => {
@@ -21,12 +22,9 @@ function RestaurantDetail() {
       setBookmarked(res.data.bookmarked);
     });
     restaurantService.getReviews(id).then((res) => setReviews(res.data.content || []));
-  }, [id]);
+  }, [id, setBookmarked]);
 
-  const handleBookmark = async () => {
-    await restaurantService.toggleBookmark(id);
-    setBookmarked((prev) => !prev);
-  };
+  const handleBookmark = toggleBookmark;
 
   const handleDeleteReview = async (reviewId) => {
     if (!window.confirm('리뷰를 삭제할까요?')) return;

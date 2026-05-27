@@ -6,6 +6,16 @@ import { restaurantService, categoryService } from '../services/restaurantServic
 import { useFetch } from '../hooks/useFetch';
 import styles from './Home.module.css';
 
+const CATEGORY_ICONS = {
+  '한식': '🍚',
+  '중식': '🥢',
+  '일식': '🍣',
+  '양식': '🍝',
+  '분식': '🥙',
+  '카페': '☕',
+  '패스트푸드': '🍔',
+  '기타': '🍽️',
+};
 
 function Home() {
   const navigate = useNavigate();
@@ -25,31 +35,58 @@ function Home() {
 
   return (
     <div className={styles.page}>
+
+      {/* 히어로 */}
       <section className={styles.hero}>
-        <h1 className={styles.heroTitle}>우리 동네 맛집을 찾아보세요</h1>
-        <p className={styles.heroSub}>카카오 지도와 함께하는 동네 맛집 플랫폼</p>
-        <SearchBar onSearch={handleSearch} />
+        <span className={styles.heroEyebrow}>🍽️ 동네 맛집 플랫폼</span>
+        <h1 className={styles.heroTitle}>
+          우리 동네 <em>맛집</em>을<br />찾아보세요
+        </h1>
+        <p className={styles.heroSub}>별점·리뷰·지도로 검증된 맛집 정보</p>
+        <div className={styles.heroSearchWrap}>
+          <SearchBar onSearch={handleSearch} />
+        </div>
       </section>
 
+      {/* 카테고리 */}
       <section className={styles.section}>
-        <h2 className="page-title">카테고리</h2>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2 className={styles.sectionTitle}>카테고리</h2>
+            <p className={styles.sectionSub}>원하는 음식 종류를 선택해보세요</p>
+          </div>
+        </div>
         <div className={styles.categories}>
           {categories.map((c) => (
-            <button key={c.id} className={styles.categoryBtn} onClick={() => handleCategory(c.id)}>
-              {c.name}
+            <button
+              key={c.id}
+              className={styles.categoryCard}
+              onClick={() => handleCategory(c.id)}
+            >
+              <span className={styles.categoryIcon}>
+                {CATEGORY_ICONS[c.name] || '🍽️'}
+              </span>
+              <span className={styles.categoryName}>{c.name}</span>
             </button>
           ))}
         </div>
       </section>
 
+      {/* 인기 맛집 */}
       <section className={styles.section}>
-        <h2 className="page-title">⭐ 인기 맛집 TOP</h2>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2 className={styles.sectionTitle}>⭐ 인기 맛집 TOP</h2>
+            <p className={styles.sectionSub}>높은 별점을 받은 검증된 맛집</p>
+          </div>
+        </div>
         <div className="restaurant-grid">
           {topRated.slice(0, 8).map((r) => (
             <RestaurantCard key={r.id} restaurant={r} />
           ))}
         </div>
       </section>
+
     </div>
   );
 }

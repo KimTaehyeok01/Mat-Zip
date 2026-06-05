@@ -1,5 +1,7 @@
 # ===== Secrets =====
 application-local.properties
+application.properties
+application-local.properties.example
 .env
 
 # ===== Spring Boot =====
